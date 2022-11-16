@@ -1,0 +1,12 @@
+// @import url(../../../style//StyleImport.scss);
+@use "../../../style/StyleImport.scss" as import;
+.CastomButton {
+	@include import.ButtonSTtle(#212121);
+	border: none;
+	border-radius: 11px;
+	width: 100%;
+	padding: 17px 0;
+	&:hover {
+		filter: brightness(0.7);
+	}
+}

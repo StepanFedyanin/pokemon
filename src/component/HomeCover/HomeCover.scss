@@ -1,5 +1,35 @@
-.homeCover{
-    background: linear-gradient(180deg, #F5DB13 0%, #F2B807 100%);
-    height: 100vh;
-    width: 100vw;
+@use "../../style/StyleImport.scss" as import;
+.homeCover {
+	background: url("../../resurc/CoverHomeBg.svg") no-repeat 100% 50%, linear-gradient(180deg, #f5db13 0%, #f2b807 100%);
+	height: 100vh;
+	width: 100vw;
+	padding: 90px 0 0 0;
+	.homeCover__container {
+		width: 1125px;
+		margin: 0 auto;
+		height: 100%;
+		.homeCover__content {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			height: 80%;
+			max-width: 516px;
+		}
+	}
+}
+.homeCover__content--title {
+	.homeCover__title--style {
+		@include import.KarlaNormal(#000000, 72px);
+		span {
+			font-weight: 700;
+		}
+	}
+}
+.homeCover__content--description {
+	.homeCover__description--style {
+		@include import.KarlaNormal(#000000, 32px);
+	}
+}
+.homeCover__content--button {
+	max-width: 231px;
 }

@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Karla:wght@400;700&family=Roboto&family=Source+Sans+Pro&display=swap");
+@mixin ButtonSTtle($color) {
+	font-family: "Karla";
+	font-style: normal;
+	font-weight: 700;
+	font-size: 23px;
+	line-height: 1.5;
+	color: $color;
+}
+@mixin KarlaNormal($color, $fz) {
+	font-family: "Karla";
+	font-style: normal;
+	font-weight: 400;
+	font-size: $fz;
+	line-height: 1.5;
+	color: $color;
+}
+@mixin SSProNormal($color, $fz) {
+	font-family: "Source Sans Pro";
+	font-style: normal;
+	font-weight: 400;
+	font-size: $fz;
+	line-height: 1.5;
+	color: $color;
+}
+// @use "../../style/StyleImport.scss" as import;
