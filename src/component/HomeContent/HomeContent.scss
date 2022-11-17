@@ -5,3 +5,29 @@
 		margin: 0 auto;
 	}
 }
+.HomeContent__filter--dropdown {
+	display: flex;
+}
+.HomeContent__list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.pogination {
+	display: flex;
+	.pogination__item {
+		margin: 0 10px;
+		.poginationshow__item--btn {
+			width: 9px;
+			height: 9px;
+			background-color: red;
+			border-radius: 50%;
+		}
+		.pogination__item--btn {
+			width: 8px;
+			height: 8px;
+			background-color: #212121;
+			border-radius: 50%;
+		}
+	}
+}

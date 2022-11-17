@@ -1,0 +1,97 @@
+@use "../../style/StyleImport.scss" as import;
+.PokiCard {
+	width: 33%;
+	display: flex;
+	justify-content: space-between;
+	background: #f6f7f9;
+	border-radius: 8px;
+	position: relative;
+	filter: drop-shadow(4px 4px 4px rgba(33, 33, 33, 0.1));
+	margin: 22.5px 0;
+	.PokiCard__info {
+		display: flex;
+		flex-direction: column;
+		padding: 5px 0 40px 25px;
+		width: 35%;
+	}
+	.PokiCard__info__cover {
+		display: flex;
+		justify-content: center;
+		width: 65%;
+		border-top-right-radius: 8px;
+		border-bottom-right-radius: 8px;
+		&.water {
+			background: #73b8d6;
+		}
+		&.grass {
+			background: #73d677;
+		}
+		&.fire {
+			background: #d68273;
+		}
+		&.flying {
+			background: #94d3d6;
+		}
+	}
+}
+.PokiCard__name {
+	margin-bottom: 12px;
+	.PokiCard__name--text {
+		@include import.KarlaBold(#212121, 18px);
+	}
+}
+.PokiCard__characteristics {
+	display: flex;
+	justify-content: space-between;
+	.PokiCard__characteristics--item {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		.PokiCard__characteristics--meaning {
+			border: 3px solid #212121;
+			border-radius: 50%;
+			width: 37px;
+			height: 37px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-bottom: 5px;
+			.PokiCard__meaning--text {
+				@include import.KarlaNormal(#212121, 15px);
+			}
+		}
+		.PokiCard__characteristics--name {
+			.PokiCard__name--text {
+				@include import.KarlaNormal(#4b4b4b, 12px);
+			}
+		}
+	}
+}
+.poki__type {
+	position: absolute;
+	bottom: 11px;
+	display: flex;
+	.poki__type--item {
+		box-shadow: inset 0px -2px 0px rgba(0, 0, 0, 0.18);
+		border-radius: 11px;
+		margin: 0 6px;
+		&.water {
+			background: #73b8d6;
+		}
+		&.grass {
+			background: #73d677;
+		}
+		&.fire {
+			background: #d68273;
+		}
+		&.flying {
+			background: #94d3d6;
+		}
+		&.poison {
+			background: #ccd673;
+		}
+		.poki__type--text {
+			padding: 2px 15px;
+		}
+	}
+}

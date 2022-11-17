@@ -1,7 +1,7 @@
 // @import url(../../../style//StyleImport.scss);
 @use "../../../style/StyleImport.scss" as import;
 .CastomButton {
-	@include import.ButtonSTtle(#212121);
+	@include import.KarlaBold(#212121, 21px);
 	border: none;
 	border-radius: 11px;
 	width: 100%;

@@ -1,22 +1,26 @@
 import axios from "axios";
 import { useState } from "react";
 export default class PostPokiList {
-	static async getAll(limit) {
+	static async getAll(limit, pagination) {
 		const response = await axios.get('https://pokeapi.co/api/v2/pokemon', {
 			params: {
-				limit: limit
+				limit: limit,
+				offset: pagination
 			}
 		});
-		getPoki(response.data);
-		console.log(1);
+		return (getPoki(response.data));
 	}
 }
-const listPoki = []
-const getPoki = (pokiList) => {
-	// console.log(pokiList);
-	pokiList.results.map(async (poki) => {
+const getPoki = async (pokiList) => {
+	const listPoki = []
+	for (const poki of pokiList.results) {
 		const response = await axios.get(poki.url);
-		listPoki.push(response);
-		console.log(listPoki);
-	})
+		listPoki.push(response.data);
+	}
+	return listPoki
 }
+
+	// await pokiList.results.map(async (poki) => {
+
+	// 	// console.log(listPoki);
+	// })

@@ -6,22 +6,16 @@ import Serch from '../UI/Serch/Serch'
 import './HomeContent.scss'
 function HomeContent() {
 	const listTipo = ['Bug', 'Dark', 'Dragon', 'Electric', 'Normal', 'Rock'];
+	const [pagination, setPagination] = useState(0)
 	const [pokiList, setPokiList] = useState([])
-	// const [fetchPosts, isPostsLoading, postError] = useFetching(async () => {
-	// 	const response = await PostService.getAll(limit, page);
-	// 	setPosts(response.data);
-	// 	const totalCount = response.headers["x-total-count"];
-	// 	setTotalPages(getPageCount(totalCount, limit));
-	// });
 	const getServise = async () => {
-		const get = await PostPokiList.getAll(9)
+		const get = await PostPokiList.getAll(9, pagination)
 		console.log(get);
-		// setPokiList(get);
-		// console.log(pokiList);
+		setPokiList(get);
 	}
 	useEffect(() => {
 		getServise();
-	}, [])
+	}, [pagination])
 	return (
 		<div className='HomeContent'>
 			<div className="HomeContent__container">
@@ -39,10 +33,31 @@ function HomeContent() {
 					</div>
 				</div>
 				<div className="HomeContent__list">
-					<PokiCard />
+					{
+						pokiList.map(poki =>
+							<PokiCard
+								img={poki.sprites.front_default}
+								name={poki.name}
+								attack={poki.stats[4].base_stat}
+								defanse={poki.stats[3].base_stat}
+								descriptiont={poki.types}
+							/>
+						)
+					}
+				</div>
+				<div className="pogination">
+					<div className="pogination__item">
+						<button className='pogination__item--btn' onClick={() => pagination != 0 ? setPagination(pagination - 9) : setPagination(pagination)}></button>
+					</div>
+					<div className="pogination__item">
+						<button className='poginationshow__item--btn'></button>
+					</div>
+					<div className="pogination__item">
+						<button className='pogination__item--btn' onClick={() => setPagination(pagination + 9)}></button>
+					</div>
 				</div>
 			</div>
-		</div>
+		</div >
 	)
 }
 
