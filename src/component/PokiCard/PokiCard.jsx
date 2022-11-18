@@ -1,8 +1,8 @@
 import React from 'react'
 import './PokiCard.scss'
-function PokiCard({ img, name, attack, defanse, descriptiont }) {
+function PokiCard({ img, name, attack, defanse, descriptiont, setModalPoki, setModalPokiId }) {
 	return (
-		<div className='PokiCard'>
+		<div className='PokiCard' onClick={() => { setModalPoki(true); setModalPokiId(name) }}>
 			<div className="PokiCard__info">
 				<div className="PokiCard__name">
 					<p className='PokiCard__name--text'>{name}</p>
@@ -28,14 +28,9 @@ function PokiCard({ img, name, attack, defanse, descriptiont }) {
 				<div className="poki__type">
 					{
 						descriptiont.map(desc =>
-							<div className={'poki__type--item' + " " + desc.type.name}>
+							<div key={name + desc.type.name} className={'poki__type--item' + " " + desc.type.name}>
 								<p className='poki__type--text'>{desc.type.name}</p>
 							</div>
-						)
-					}
-					{
-						descriptiont.map(desc =>
-							console.log(desc)
 						)
 					}
 				</div>

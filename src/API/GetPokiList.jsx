@@ -10,6 +10,10 @@ export default class PostPokiList {
 		});
 		return (getPoki(response.data));
 	}
+	static async getPokiName(name) {
+		const response = await axios.get('https://pokeapi.co/api/v2/pokemon/' + name);
+		return (response.data);
+	}
 }
 const getPoki = async (pokiList) => {
 	const listPoki = []

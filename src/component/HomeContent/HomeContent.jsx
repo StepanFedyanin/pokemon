@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import PostPokiList from '../../API/GetPokiList'
+import ModalPoki from '../ModalPoki/ModalPoki'
 import PokiCard from '../PokiCard/PokiCard'
 import DropdownMenu from '../UI/DropdownMenu/DropdownMenu'
 import Serch from '../UI/Serch/Serch'
@@ -7,7 +8,9 @@ import './HomeContent.scss'
 function HomeContent() {
 	const listTipo = ['Bug', 'Dark', 'Dragon', 'Electric', 'Normal', 'Rock'];
 	const [pagination, setPagination] = useState(0)
-	const [pokiList, setPokiList] = useState([])
+	const [pokiList, setPokiList] = useState([]);
+	const [modalPoki, setModalPoki] = useState(false);
+	const [modalPokiId, setModalPokiId] = useState();
 	const getServise = async () => {
 		const get = await PostPokiList.getAll(9, pagination)
 		console.log(get);
@@ -36,15 +39,19 @@ function HomeContent() {
 					{
 						pokiList.map(poki =>
 							<PokiCard
-								img={poki.sprites.front_default}
+								key={poki.name}
+								img={poki.sprites.other.home.front_default}
 								name={poki.name}
 								attack={poki.stats[4].base_stat}
 								defanse={poki.stats[3].base_stat}
 								descriptiont={poki.types}
+								setModalPoki={setModalPoki}
+								setModalPokiId={setModalPokiId}
 							/>
 						)
 					}
 				</div>
+				{/* //отдельный элемент */}
 				<div className="pogination">
 					<div className="pogination__item">
 						<button className='pogination__item--btn' onClick={() => pagination != 0 ? setPagination(pagination - 9) : setPagination(pagination)}></button>
@@ -57,6 +64,7 @@ function HomeContent() {
 					</div>
 				</div>
 			</div>
+			<ModalPoki modalPoki={modalPoki} setModalPoki={setModalPoki} modalPokiId={modalPokiId} />
 		</div >
 	)
 }
