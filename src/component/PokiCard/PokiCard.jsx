@@ -1,4 +1,6 @@
 import React from 'react'
+import Characteristics from '../Characteristics/Characteristics';
+import Modifiers from '../Modifiers/Modifiers';
 import './PokiCard.scss'
 function PokiCard({ img, name, attack, defanse, descriptiont, setModalPoki, setModalPokiId }) {
 	return (
@@ -8,29 +10,13 @@ function PokiCard({ img, name, attack, defanse, descriptiont, setModalPoki, setM
 					<p className='PokiCard__name--text'>{name}</p>
 				</div>
 				<div className="PokiCard__characteristics">
-					<div className="PokiCard__characteristics--item">
-						<div className="PokiCard__characteristics--meaning">
-							<p>{attack}</p>
-						</div>
-						<div className="PokiCard__characteristics--name">
-							<p className='PokiCard__name--text'>Attack</p>
-						</div>
-					</div>
-					<div className="PokiCard__characteristics--item">
-						<div className="PokiCard__characteristics--meaning">
-							<p className='PokiCard__meaning--text'>{defanse}</p>
-						</div>
-						<div className="PokiCard__characteristics--name">
-							<p className='PokiCard__name--text'>Defanse</p>
-						</div>
-					</div>
+					<Characteristics title="Attack" meaning={attack}/>
+					<Characteristics title="Defanse" meaning={defanse}/>
 				</div>
 				<div className="poki__type">
 					{
 						descriptiont.map(desc =>
-							<div key={name + desc.type.name} className={'poki__type--item' + " " + desc.type.name}>
-								<p className='poki__type--text'>{desc.type.name}</p>
-							</div>
+							<Modifiers key={name+desc.type.name} type__name={desc.type.name}/>
 						)
 					}
 				</div>
