@@ -15,12 +15,5 @@
 	line-height: 1.5;
 	color: $color;
 }
-@mixin SSProNormal($color, $fz) {
-	font-family: "Source Sans Pro";
-	font-style: normal;
-	font-weight: 400;
-	font-size: $fz;
-	line-height: 1.5;
-	color: $color;
-}
+
 // @use "../../style/StyleImport.scss" as import;

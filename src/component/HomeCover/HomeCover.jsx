@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import CastomButton from '../UI/Button/CastomButton'
 import './HomeCover.scss'
 function HomeCover() {
@@ -15,7 +16,9 @@ function HomeCover() {
 						<p className='homeCover__description--style'>You can know the type of Pokemon, its strengths, disadvantages and abilities</p>
 					</div>
 					<div className="homeCover__content--button">
-						<CastomButton color='#73D677' boxShadow="inset 0px -9px 0px rgba(0, 0, 0, 0.18)">See pokemons</CastomButton>
+						<NavLink to="/PokiContent" >
+							<CastomButton color='#73D677' boxShadow="inset 0px -9px 0px rgba(0, 0, 0, 0.18)">See pokemons</CastomButton>
+						</NavLink>
 					</div>
 				</div>
 			</div>

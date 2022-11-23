@@ -6,7 +6,7 @@ import DropdownMenu from '../UI/DropdownMenu/DropdownMenu'
 import Serch from '../UI/Serch/Serch'
 import './HomeContent.scss'
 function HomeContent() {
-	const listTipo = ['Bug', 'Dark', 'Dragon', 'Electric', 'Normal', 'Rock'];
+	const listTipo = ['Normal','Combat','Flying','Poisonous','earthy','Stone','insect','ghostly','Steel','Magic','Fiery','Water','Herbal','Electric','Mental','Ice','Draconic','Dark'];
 	const [pagination, setPagination] = useState(0)
 	const [pokiList, setPokiList] = useState([]);
 	const [modalPoki, setModalPoki] = useState(false);
@@ -23,7 +23,7 @@ function HomeContent() {
 		<div className='HomeContent'>
 			<div className="HomeContent__container">
 				<div className="HomeContent__title">
-					<h1>800 Pokemons for you to choose your favorite</h1>
+					<h1 className="HomeContent__title--style">800 <span>Pokemons</span> for you to choose your favorite</h1>
 				</div>
 				<div className="HomeContent__filter">
 					<div className="HomeContent__filter--serch">

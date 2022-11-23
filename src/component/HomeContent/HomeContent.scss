@@ -1,13 +1,37 @@
+@use "../../style/StyleImport.scss" as import;
 .HomeContent {
-	margin-top: 90px;
+	padding-top: 90px;
+	height: 100vh;
 	.HomeContent__container {
 		max-width: 1125px;
+		height: 100%;
 		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 	}
 }
-.HomeContent__filter--dropdown {
-	display: flex;
+.HomeContent__title{
+	.HomeContent__title--style{
+		@include import.KarlaNormal(#000000,35px);
+		span{
+			font-weight: bold;
+		}
+	}
 }
+.HomeContent__filter{
+	width: 100%;
+	.HomeContent__filter--serch{
+		margin: 34px 0 36px 0;
+	}
+	.HomeContent__filter--dropdown {
+		display: flex;
+		justify-content: space-between;
+		width: 50%;
+	}
+}
+
 .HomeContent__list {
 	display: flex;
 	flex-wrap: wrap;

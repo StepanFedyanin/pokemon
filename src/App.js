@@ -1,11 +1,12 @@
-import HomePageContent from "./Pages/HomePageContent/HomePageContent";
-import HomePageCover from "./Pages/HomePageCover/HomePageCover";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import AppRouter from "./Utils/AppRouter";
 
 function App() {
 	return (
 		<div className="App">
-			{/* <HomePageCover/> */}
-			<HomePageContent />
+				<BrowserRouter>
+					<AppRouter />
+				</BrowserRouter>
 		</div>
 	);
 }

@@ -14,12 +14,12 @@ function DropdownMenu({ children, list }) {
 			</div>
 
 			<nav className={showDropdown ? 'dropdown__list--Show' : 'dropdown__list'}>
-				<ul>
+				<ul className='dropdown__list--nav'>
 					{
 						list.map(item =>
-							<li key={item}>
-								<input type="checkbox" name="" id={item} />
-								<label htmlFor={item}>{item}</label>
+							<li key={item} className="dropdown__list--item">
+								<input className="dropdown__item--input" type="checkbox" name="" id={item} />
+								<label className="dropdown__item--label" htmlFor={item}>{item}</label>
 							</li>
 						)
 					}
