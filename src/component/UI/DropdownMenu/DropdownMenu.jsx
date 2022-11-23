@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './DropdownMenu.scss'
 function DropdownMenu({ children, list }) {
-	const [showDropdown, setShowDropdown] = useState(false)
+	const [showDropdown, setShowDropdown] = useState(false);
 	return (
 		<div className='dropdown'>
 			<div className="dropdown__btn">
@@ -15,14 +15,14 @@ function DropdownMenu({ children, list }) {
 
 			<nav className={showDropdown ? 'dropdown__list--Show' : 'dropdown__list'}>
 				<ul className='dropdown__list--nav'>
-					{
+					{/* {
 						list.map(item =>
 							<li key={item} className="dropdown__list--item">
 								<input className="dropdown__item--input" type="checkbox" name="" id={item} />
 								<label className="dropdown__item--label" htmlFor={item}>{item}</label>
 							</li>
 						)
-					}
+					} */}
 				</ul>
 			</nav>
 		</div>

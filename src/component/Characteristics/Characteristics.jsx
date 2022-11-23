@@ -9,6 +9,9 @@ function Characteristics({title,meaning}) {
             <div className="PokiCard__characteristics--name">
                 <p className='PokiCard__name--text'>{title}</p>
             </div>
+            <div className="PokiCard__characteristics--progress">
+                <div className="PokiCard__progress--bar"></div>
+            </div>
         </div>
     )
 }

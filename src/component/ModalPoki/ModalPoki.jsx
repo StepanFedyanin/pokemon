@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './ModalPoki.scss'
 import closeIcon from '../../resurc/closeIcon.svg'
 import PostPokiList from '../../API/GetPokiList';
@@ -7,19 +7,26 @@ import Characteristics from '../Characteristics/Characteristics';
 function ModalPoki({ modalPoki, setModalPoki, modalPokiId }) {
 	const [pokiContent, setPokiContent] = useState();
 	const [pokiAwaitLoading, setAwaitLoading] = useState(false);
-
+	const progressBarHealthy = useRef('*');
+	const progressBarExperience = useRef('*');
 	const style = ['ModalPoki'];
 	if (modalPoki) {
 		style.push('active');
 	}
 	useEffect(() => {
 		awaitPoki();
+		progressBar();
 	}, [modalPokiId])
 	const awaitPoki = async () => {
 		const responce = await PostPokiList.getPokiName(modalPokiId);
 		setPokiContent(await responce);
 		console.log(await responce);
 		setAwaitLoading(true)
+	}
+	const progressBar = () =>{
+		console.log(progressBarHealthy.current);
+		console.log(progressBarExperience.current);
+
 	}
 	return (
 		<div className={style.join(' ')} onClick={() => setModalPoki(false)}>
@@ -70,19 +77,25 @@ function ModalPoki({ modalPoki, setModalPoki, modalPokiId }) {
 									</div>
 									<div className="ModalPoki__description--lvl">
 										<div className="ModalPoki__lvl--item">
-											<div className="ModalPoki__item--title"></div>
+											<div className="ModalPoki__item--title">
+												<p>Healthy Points</p>
+											</div>
 											<div className="ModalPoki__item--meaning">
 												<p>{pokiContent.stats[2].base_stat}</p>
 											</div>
 											<div className="ModalPoki__item--progress">
+												<div className="ModalPoki__progress--bar healthy"></div>
 											</div>
 										</div>
 										<div className="ModalPoki__lvl--item">
-											<div className="ModalPoki__item--title"></div>
+											<div className="ModalPoki__item--title">
+												<p>Experience</p>
+											</div>
 											<div className="ModalPoki__item--meaning">
 												<p>{pokiContent.base_experience}</p>
 											</div>
 											<div className="ModalPoki__item--progress">
+												<div className="ModalPoki__progress--bar experience"></div>
 											</div>
 										</div>
 									</div>

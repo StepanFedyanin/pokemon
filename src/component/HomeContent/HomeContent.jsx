@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import PostPokiList from '../../API/GetPokiList'
+import Loading from '../Loading/Loading'
 import ModalPoki from '../ModalPoki/ModalPoki'
-import PokiCard from '../PokiCard/PokiCard'
+import Pagination from '../Pagination/Pagination'
+import PokiList from '../PokiList/PokiList'
 import DropdownMenu from '../UI/DropdownMenu/DropdownMenu'
 import Serch from '../UI/Serch/Serch'
 import './HomeContent.scss'
@@ -10,15 +12,25 @@ function HomeContent() {
 	const [pagination, setPagination] = useState(0)
 	const [pokiList, setPokiList] = useState([]);
 	const [modalPoki, setModalPoki] = useState(false);
+	const [LoadingBoolean, setLoadingBoolean] = useState(false);
+
 	const [modalPokiId, setModalPokiId] = useState();
 	const getServise = async () => {
 		const get = await PostPokiList.getAll(9, pagination)
-		console.log(get);
 		setPokiList(get);
+		setLoadingBoolean(true)
 	}
 	useEffect(() => {
 		getServise();
 	}, [pagination])
+	const paginationChange= (value) =>{
+		if (value == 'pref' && pagination!=0) {
+			setPagination(pagination - 9)
+		}
+		if (value == 'next') {
+			setPagination(pagination + 9)
+		}
+	}
 	return (
 		<div className='HomeContent'>
 			<div className="HomeContent__container">
@@ -32,37 +44,22 @@ function HomeContent() {
 					<div className="HomeContent__filter--dropdown">
 						<DropdownMenu list={listTipo}>Tipo</DropdownMenu>
 						<DropdownMenu list={listTipo}>Ataque</DropdownMenu>
-						<DropdownMenu list={listTipo}>Experiencie</DropdownMenu>
+						<DropdownMenu Slist={listTipo}>Experiencie</DropdownMenu>
 					</div>
 				</div>
-				<div className="HomeContent__list">
+				<div className="HomeContent__content">
 					{
-						pokiList.map(poki =>
-							<PokiCard
-								key={poki.name}
-								img={poki.sprites.other.home.front_default}
-								name={poki.name}
-								attack={poki.stats[4].base_stat}
-								defanse={poki.stats[3].base_stat}
-								descriptiont={poki.types}
-								setModalPoki={setModalPoki}
+						LoadingBoolean?
+							<PokiList 
+								pokiList = {pokiList} 
+								setModalPoki={setModalPoki} 
 								setModalPokiId={setModalPokiId}
 							/>
-						)
+							:
+							<Loading/>
 					}
 				</div>
-				{/* //отдельный элемент */}
-				<div className="pogination">
-					<div className="pogination__item">
-						<button className='pogination__item--btn' onClick={() => pagination != 0 ? setPagination(pagination - 9) : setPagination(pagination)}></button>
-					</div>
-					<div className="pogination__item">
-						<button className='poginationshow__item--btn'></button>
-					</div>
-					<div className="pogination__item">
-						<button className='pogination__item--btn' onClick={() => setPagination(pagination + 9)}></button>
-					</div>
-				</div>
+				<Pagination paginationChange={paginationChange}/>
 			</div>
 			<ModalPoki modalPoki={modalPoki} setModalPoki={setModalPoki} modalPokiId={modalPokiId} />
 		</div >
