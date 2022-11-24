@@ -3,21 +3,10 @@ import PostPokiList from '../../API/GetPokiList'
 import Loading from '../Loading/Loading';
 import PokiCard from '../PokiCard/PokiCard'
 import './PokiList.scss'
-function PokiList({ pagination, setModalPoki, setModalPokiId }) {
-	const [pokiList, setPokiList] = useState([]);
-	const [LoadingBoolean, setLoadingBoolean] = useState(false);
-
-	const getServise = async () => {
-		const get = await PostPokiList.getAll(9, pagination)
-		setPokiList(get);
-		setLoadingBoolean(true)
-	}
-	useEffect(() => {
-		getServise();
-	}, [pagination])
+function PokiList({ pokiList, setModalPoki, setModalPokiId }) {
 	return (
 		<div className='HomeContent__list'>
-			{LoadingBoolean ?
+			{
 				pokiList.map(poki =>
 					<PokiCard
 						key={poki.name}
@@ -29,8 +18,7 @@ function PokiList({ pagination, setModalPoki, setModalPokiId }) {
 						setModalPoki={setModalPoki}
 						setModalPokiId={setModalPokiId}
 					/>
-				) :
-				<Loading />
+				)
 			}
 		</div>
 	)
