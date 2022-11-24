@@ -4,6 +4,7 @@ import closeIcon from '../../resurc/closeIcon.svg'
 import PostPokiList from '../../API/GetPokiList';
 import Modifiers from '../Modifiers/Modifiers';
 import Characteristics from '../Characteristics/Characteristics';
+import ProgressBar from '../UI/ProgressBar/ProgressBar';
 function ModalPoki({ modalPoki, setModalPoki, modalPokiId }) {
 	const [pokiContent, setPokiContent] = useState();
 	const [pokiAwaitLoading, setAwaitLoading] = useState(false);
@@ -14,25 +15,29 @@ function ModalPoki({ modalPoki, setModalPoki, modalPokiId }) {
 		style.push('active');
 	}
 	useEffect(() => {
-		awaitPoki();
-		progressBar();
+		awaitPoki().then(
+			result => {
+				progressBar(result)
+			});
 	}, [modalPokiId])
 	const awaitPoki = async () => {
-		const responce = await PostPokiList.getPokiName(modalPokiId);
-		setPokiContent(await responce);
-		console.log(await responce);
+		const responce = (await PostPokiList.getPokiName(modalPokiId));
+		setPokiContent(await responce)
 		setAwaitLoading(true)
+		return await responce;
 	}
-	const progressBar = () =>{
-		console.log(progressBarHealthy.current);
-		console.log(progressBarExperience.current);
-
+	const progressBar = (result) => {
+		progressBarHealthy.current = (result.stats[2].base_stat / 500) * 100;
+		progressBarExperience.current = (result.base_experience / 500) * 100;
+		// window.addEventListener('scroll', (e) => {
+		// 	window.scrollTo(0, 0);
+		// });
 	}
 	return (
 		<div className={style.join(' ')} onClick={() => setModalPoki(false)}>
 			<div className="ModalPoki__container" onClick={(e) => e.stopPropagation()}>
 				<div className="ModalPoki__hide">
-					<button onClick={() => setModalPoki(false)}>
+					<button className='ModalPoki__hide--btn' onClick={() => setModalPoki(false)}>
 						<img src={closeIcon} alt="" />
 					</button>
 				</div>
@@ -44,73 +49,72 @@ function ModalPoki({ modalPoki, setModalPoki, modalPokiId }) {
 									<div className="ModalPoki__cover--photo">
 										<img src={pokiContent.sprites.other.home.front_default} alt="" />
 									</div>
-									<div className="odalPoki__cover--modifiers">
+									<div className="ModalPoki__cover--modifiers">
 										{
 											pokiContent.types.map(desc =>
-												<Modifiers key={modalPokiId+"-"+desc.type.name} type__name={desc.type.name} />
+												<Modifiers key={modalPokiId + "-" + desc.type.name} type__name={desc.type.name} />
 											)
-										}									
+										}
 									</div>
 								</div>
-								<div className="ModalPoki__content--description">
+								<div className={"ModalPoki__content--description" + ' ' + pokiContent.types[0].type.name}>
 									<div className="ModalPoki__description--info">
 										<div className="ModalPoki__info--name">
-											<p>{pokiContent.name}</p>
+											<p className='ModalPoki__name--style'>{pokiContent.name}</p>
 										</div>
 										<div className="ModalPoki__info--generation">
 											<div className="ModalPoki__generation--number">
-												<p></p>
+												<p className='ModalPoki__generation--info'>Generation 1</p>
 											</div>
 											<div className="ModalPoki__generation--meaning">
-												<p>
-												</p>
+												<p className='ModalPoki__meaning--id'>{pokiContent.id}</p>
 											</div>
 										</div>
 									</div>
 									<div className="ModalPoki__description--abilities">
 										<div className="ModalPoki__abilities--title">
-											<p></p>
+											<p className='ModalPoki__abilities--text'>Abilities</p>
 										</div>
 										<div className="ModalPoki__abilities--meaning">
-											<p></p>
+											<p className='ModalPoki__abilities--dec'>
+												{
+													pokiContent.abilities.map(abi => { return (abi.ability.name + " - ") })
+												}
+											</p>
 										</div>
 									</div>
 									<div className="ModalPoki__description--lvl">
 										<div className="ModalPoki__lvl--item">
-											<div className="ModalPoki__item--title">
-												<p>Healthy Points</p>
+											<div className="ModalPoki__lvl--header">
+												<p className='ModalPoki__lvl--title'>Healthy Points</p>
 											</div>
-											<div className="ModalPoki__item--meaning">
-												<p>{pokiContent.stats[2].base_stat}</p>
+											<div className="ModalPoki__lvl--meaning">
+												<p className='ModalPoki__lvl--text'>{pokiContent.stats[2].base_stat}</p>
 											</div>
-											<div className="ModalPoki__item--progress">
-												<div className="ModalPoki__progress--bar healthy"></div>
-											</div>
+											<ProgressBar styleName='healthy' percent={progressBarHealthy.current} />
 										</div>
 										<div className="ModalPoki__lvl--item">
-											<div className="ModalPoki__item--title">
-												<p>Experience</p>
+											<div className="ModalPoki__lvl--header">
+												<p className='ModalPoki__lvl--title'>Experience</p>
 											</div>
-											<div className="ModalPoki__item--meaning">
-												<p>{pokiContent.base_experience}</p>
+											<div className="ModalPoki__lvl--meaning">
+												<p className='ModalPoki__lvl--text'>{pokiContent.base_experience}</p>
 											</div>
-											<div className="ModalPoki__item--progress">
-												<div className="ModalPoki__progress--bar experience"></div>
-											</div>
+											<ProgressBar styleName='experience' percent={progressBarExperience.current} />
 										</div>
 									</div>
 									<div className="ModalPoki__description--characteristics">
 										<div className="ModalPoki__characteristics--item">
-										<Characteristics title="Defanse" meaning={pokiContent.stats[2].base_stat}/>
+											<Characteristics title="Defanse" meaning={pokiContent.stats[2].base_stat} />
 										</div>
 										<div className="ModalPoki__characteristics--item">
-										<Characteristics title="Attack" meaning={pokiContent.stats[1].base_stat}/>
+											<Characteristics title="Attack" meaning={pokiContent.stats[1].base_stat} />
 										</div>
 										<div className="ModalPoki__characteristics--item">
-										<Characteristics title="Sp Attack" meaning={pokiContent.stats[3].base_stat}/>
+											<Characteristics title="Sp Attack" meaning={pokiContent.stats[3].base_stat} />
 										</div>
 										<div className="ModalPoki__characteristics--item">
-										<Characteristics title="Sp Defense" meaning={pokiContent.stats[4].base_stat}/>
+											<Characteristics title="Sp Defense" meaning={pokiContent.stats[4].base_stat} />
 										</div>
 
 									</div>

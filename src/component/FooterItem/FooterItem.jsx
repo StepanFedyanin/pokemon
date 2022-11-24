@@ -1,8 +1,8 @@
 import React from 'react'
 import './FooterItem.scss'
-function FooterItem() {
+function FooterItem({ position }) {
 	return (
-		<div className='FooterItem'>
+		<div className={position ? 'FooterItem position' : 'FooterItem'}>
 			<div className="FooterItem__container">
 				<div className='FooterItem__description'>
 					<p className="FooterItem__description--style">Make with ❤️ for the PokéSpartans team Platzi Master</p>

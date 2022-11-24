@@ -5,10 +5,10 @@ import HomeContent from '../../component/HomeContent/HomeContent'
 
 function HomePageContent() {
 	return (
-		<div>
+		<div className='wrapper'>
 			<HeaderItem />
 			<HomeContent />
-			<FooterItem />
+			<FooterItem position={false} />
 		</div>
 	)
 }

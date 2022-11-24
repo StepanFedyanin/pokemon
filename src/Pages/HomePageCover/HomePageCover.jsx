@@ -8,7 +8,7 @@ function HomePageCover() {
 		<div>
 			<HeaderItem />
 			<HomeCover />
-			<FooterItem />
+			<FooterItem position={true} />
 		</div>
 	)
 }

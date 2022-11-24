@@ -1,10 +1,13 @@
 @use "../../style/StyleImport.scss" as import;
 
 .FooterItem {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
+	flex-shrink: 0;
+	&.position {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+	}
 	.FooterItem__container {
 		max-width: 1125px;
 		margin: 0 auto;
