@@ -5,38 +5,43 @@ import PostPokiList from '../../API/GetPokiList';
 import Modifiers from '../Modifiers/Modifiers';
 import Characteristics from '../Characteristics/Characteristics';
 import ProgressBar from '../UI/ProgressBar/ProgressBar';
-function ModalPoki({ modalPoki, setModalPoki, modalPokiId }) {
-	const [pokiContent, setPokiContent] = useState();
-	const [pokiAwaitLoading, setAwaitLoading] = useState(false);
-	const progressBarHealthy = useRef('*');
-	const progressBarExperience = useRef('*');
+import { useDispatch, useSelector } from 'react-redux';
+import { changeModalLoading } from '../../redux/reducers/openModalReducer';
+function ModalPoki() {
+	const dispath = useDispatch();
+	const loadingModal = useSelector(state => state.openModal.loadingModal)
+	const idCard = useSelector(state => state.openModal.id_Card)
+	console.log(idCard);
+
+
+	// const [pokiContent, setPokiContent] = useState();
+	// const [pokiAwaitLoading, setAwaitLoading] = useState(false);
+	// const progressBarHealthy = useRef('*');
+	// const progressBarExperience = useRef('*');
 	const style = ['ModalPoki'];
-	if (modalPoki) {
+	if (loadingModal) {
 		style.push('active');
 	}
-	useEffect(() => {
-		awaitPoki().then(
-			result => {
-				progressBar(result)
-			});
-	}, [modalPokiId])
-	const awaitPoki = async () => {
-		const responce = (await PostPokiList.getPokiName(modalPokiId));
-		setPokiContent(await responce)
-		setAwaitLoading(true)
-		return await responce;
-	}
-	const progressBar = (result) => {
-		progressBarHealthy.current = (result.stats[2].base_stat / 500) * 100;
-		progressBarExperience.current = (result.base_experience / 500) * 100;
-		// window.addEventListener('scroll', (e) => {
-		// 	window.scrollTo(0, 0);
-		// });
-	}
+	// useEffect(() => {
+	// 	awaitPoki().then(
+	// 		result => {
+	// 			progressBar(result)
+	// 		});
+	// }, [modalPokiId])
+	// const awaitPoki = async () => {
+	// 	const responce = (await PostPokiList.getPokiName(modalPokiId));
+	// 	setPokiContent(await responce)
+	// 	setAwaitLoading(true)
+	// 	return await responce;
+	// }
+	// const progressBar = (result) => {
+	// 	progressBarHealthy.current = (result.stats[2].base_stat / 500) * 100;
+	// 	progressBarExperience.current = (result.base_experience / 500) * 100;
+	// }
 	return (
-		<div className={style.join(' ')} onClick={() => setModalPoki(false)}>
+		<div className={style.join(' ')} onClick={() => dispath(changeModalLoading(false))}>
 			<div className="ModalPoki__container" onClick={(e) => e.stopPropagation()}>
-				<div className="ModalPoki__hide">
+				{/* <div className="ModalPoki__hide">
 					<button className='ModalPoki__hide--btn' onClick={() => setModalPoki(false)}>
 						<img src={closeIcon} alt="" />
 					</button>
@@ -124,7 +129,7 @@ function ModalPoki({ modalPoki, setModalPoki, modalPokiId }) {
 							<div className=""></div>
 					}
 
-				</div>
+				</div> */}
 			</div>
 		</div >
 	)

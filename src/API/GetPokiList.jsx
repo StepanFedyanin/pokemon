@@ -1,18 +1,18 @@
 import axios from "axios";
-import { useState } from "react";
-export default class PostPokiList {
-	static async getAll(limit, pagination) {
-		const response = await axios.get('https://pokeapi.co/api/v2/pokemon', {
+import { changeListFalse } from "../redux/reducers/listLoadingReducer";
+import { getPokemons } from "../redux/reducers/PokemonReducer";
+export const getPokiList = () => {
+	return function (dispath) {
+		axios.get('https://pokeapi.co/api/v2/pokemon', {
 			params: {
-				limit: limit,
-				offset: pagination
+				limit: 9,
+				// offset: pagination
 			}
-		});
-		return (getPoki(response.data));
-	}
-	static async getPokiName(name) {
-		const response = await axios.get('https://pokeapi.co/api/v2/pokemon/' + name);
-		return (response.data);
+		}
+		)
+			.then(response => getPoki(response.data))
+			.then(pokiList => dispath(getPokemons(pokiList)))
+			.then(() => dispath(changeListFalse(true)))
 	}
 }
 const getPoki = async (pokiList) => {
@@ -23,8 +23,3 @@ const getPoki = async (pokiList) => {
 	}
 	return listPoki
 }
-
-	// await pokiList.results.map(async (poki) => {
-
-	// 	// console.log(listPoki);
-	// })

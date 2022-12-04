@@ -3,7 +3,7 @@ import PostPokiList from '../../API/GetPokiList'
 import Loading from '../Loading/Loading';
 import PokiCard from '../PokiCard/PokiCard'
 import './PokiList.scss'
-function PokiList({ pokiList, setModalPoki, setModalPokiId }) {
+function PokiList({ pokiList }) {
 	return (
 		<div className='HomeContent__list'>
 			{
@@ -15,8 +15,6 @@ function PokiList({ pokiList, setModalPoki, setModalPokiId }) {
 						attack={poki.stats[4].base_stat}
 						defanse={poki.stats[3].base_stat}
 						descriptiont={poki.types}
-						setModalPoki={setModalPoki}
-						setModalPokiId={setModalPokiId}
 					/>
 				)
 			}

@@ -1,22 +1,29 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
+import { changeCardId, changeModalLoading } from '../../redux/reducers/openModalReducer';
 import Characteristics from '../Characteristics/Characteristics';
 import Modifiers from '../Modifiers/Modifiers';
 import './PokiCard.scss'
-function PokiCard({ img, name, attack, defanse, descriptiont, setModalPoki, setModalPokiId }) {
+function PokiCard({ img, name, attack, defanse, descriptiont }) {
+	const dispath = useDispatch();
+	const showPokemon = () => {
+		dispath(changeModalLoading(true));
+		dispath(changeCardId(1));
+	}
 	return (
-		<div className='PokiCard' onClick={() => { setModalPoki(true); setModalPokiId(name) }}>
+		<div className='PokiCard' onClick={() => showPokemon()}>
 			<div className="PokiCard__info">
 				<div className="PokiCard__name">
 					<p className='PokiCard__name--text'>{name}</p>
 				</div>
 				<div className="PokiCard__characteristics">
-					<Characteristics title="Attack" meaning={attack}/>
-					<Characteristics title="Defanse" meaning={defanse}/>
+					<Characteristics title="Attack" meaning={attack} />
+					<Characteristics title="Defanse" meaning={defanse} />
 				</div>
 				<div className="poki__type">
 					{
 						descriptiont.map(desc =>
-							<Modifiers key={name+desc.type.name} type__name={desc.type.name}/>
+							<Modifiers key={name + desc.type.name} type__name={desc.type.name} />
 						)
 					}
 				</div>
