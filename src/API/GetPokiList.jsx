@@ -1,18 +1,17 @@
 import axios from "axios";
-import { changeListFalse } from "../redux/reducers/listLoadingReducer";
-import { getPokemons } from "../redux/reducers/PokemonReducer";
-export const getPokiList = () => {
+import { changeListLoading, getPokemons } from "../redux/reducers/PokemonReducer";
+export const getPokiList = (limit, pagination) => {
 	return function (dispath) {
 		axios.get('https://pokeapi.co/api/v2/pokemon', {
 			params: {
 				limit: 9,
-				// offset: pagination
+				offset: pagination
 			}
 		}
 		)
 			.then(response => getPoki(response.data))
 			.then(pokiList => dispath(getPokemons(pokiList)))
-			.then(() => dispath(changeListFalse(true)))
+			.then(() => dispath(changeListLoading(true)))
 	}
 }
 const getPoki = async (pokiList) => {

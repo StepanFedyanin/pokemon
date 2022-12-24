@@ -13,23 +13,18 @@ function HeaderItem() {
 					<nav className='header__nav'>
 						<ul className='header__nav--list'>
 							<li className='header__list--item'>
-								<NavLink to="/PokiContent" className={({ isActive }) => isActive ? "header__item--active" : "header__item--noactive"}>
+								<NavLink to="/HomeContent" className={({ isActive }) => isActive ? "header__item--active" : "header__item--noactive"}>
 									Home
 								</NavLink>
 							</li>
 							<li className='header__list--item'>
-								<NavLink to="/pokedex" className={({ isActive }) => isActive ? "header__item--active" : "header__item--noactive"}>
+								<NavLink to="/PokedexContent" className={({ isActive }) => isActive ? "header__item--active" : "header__item--noactive"}>
 									Pokédex
 								</NavLink>
 							</li>
 							<li className='header__list--item'>
-								<NavLink to="/legendaries" className={({ isActive }) => isActive ? "header__item--active" : "header__item--noactive"}>
-									Legendaries
-								</NavLink>
-							</li>
-							<li className='header__list--item'>
-								<NavLink to="/doc" className={({ isActive }) => isActive ? "header__item--active" : "header__item--noactive"}>
-									Documentation
+								<NavLink to="/Varieties" className={({ isActive }) => isActive ? "header__item--active" : "header__item--noactive"}>
+									Varieties
 								</NavLink>
 							</li>
 						</ul>

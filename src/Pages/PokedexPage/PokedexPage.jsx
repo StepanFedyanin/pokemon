@@ -1,16 +1,16 @@
 import React from 'react'
 import FooterItem from '../../component/FooterItem/FooterItem'
 import HeaderItem from '../../component/HeaderItem/HeaderItem'
-import HomeContent from '../../component/HomeContent/HomeContent'
+import PokedexContent from '../../component/PokedexContent/PokedexContent'
 
-function HomePageContent() {
+function PokedexPageContent() {
 	return (
 		<div className='wrapper'>
 			<HeaderItem />
-			<HomeContent />
+			<PokedexContent />
 			<FooterItem position={false} />
 		</div>
 	)
 }
 
-export default HomePageContent
+export default PokedexPageContent

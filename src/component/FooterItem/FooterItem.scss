@@ -14,8 +14,11 @@
 		display: flex;
 		justify-content: space-between;
 		.FooterItem__description {
-			.FooterItem__description--style {
+			&--style {
 				@include import.KarlaNormal(#212121, 18px);
+			}
+			&--white {
+				@include import.KarlaNormal(#f2f2f2, 18px);
 			}
 		}
 	}

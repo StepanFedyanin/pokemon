@@ -8,12 +8,11 @@ import PokiList from '../PokiList/PokiList'
 import DropdownMenu from '../UI/DropdownMenu/DropdownMenu'
 import Serch from '../UI/Serch/Serch'
 import './HomeContent.scss'
-function HomeContent() {
+function PokedexContent() {
 	const dispath = useDispatch();
 	const pokiList = useSelector(state => state.pokeList.pokimons)
-	const loadingList = useSelector(state => state.loadingList.loadingList)
-	// console.log(pokiList);
-
+	const loadingList = useSelector(state => state.pokeList.loadingList)
+	const pagination = useSelector(state => state.pagination.pagination_value)
 	// const [listTipo, setListTipo] = useState(['Normal', 'Combat', 'Flying', 'Poisonous', 'earthy', 'Stone', 'insect', 'ghostly', 'Steel', 'Magic', 'Fiery', 'Water', 'Herbal', 'Electric', 'Mental', 'Ice', 'Draconic', 'Dark']);
 	// const [pagination, setPagination] = useState(0)
 	// const [pokiList, setPokiList] = useState([]);
@@ -21,8 +20,9 @@ function HomeContent() {
 	// const [modalPokiId, setModalPokiId] = useState();
 
 	useEffect(() => {
-		dispath(getPokiList());
-	}, [])
+		dispath(getPokiList(pagination, pagination));
+	}, [pagination])
+	// console.log(pagination);
 
 	const paginationChange = (value) => {
 		// if (value == 'pref' && pagination != 0) {
@@ -33,29 +33,29 @@ function HomeContent() {
 		// }
 	}
 	return (
-		<div className='HomeContent'>
-			<div className="HomeContent__container">
-				<div className="HomeContent__title">
-					<h1 className="HomeContent__title--style">800 <span>Pokemons</span> for you to choose your favorite</h1>
+		<div className='PokedexContent'>
+			<div className="PokedexContent__container">
+				<div className="PokedexContent__title">
+					<h1 className="PokedexContent__title--style">800 <span>Pokemons</span> for you to choose your favorite</h1>
 				</div>
-				<div className="HomeContent__filter">
-					<div className="HomeContent__filter--serch">
-						<Serch placeholder="Encuentra tu pokémon..." />
+				<div className="PokedexContent__filter">
+					<div className="PokedexContent__filter--serch">
+						<Serch placeholder="name or id of the pokemon..." />
 					</div>
-					<div className="HomeContent__filter--dropdown">
+					<div className="PokedexContent__filter--dropdown">
 						{/* <DropdownMenu list={listTipo}>Tipo</DropdownMenu>
 						<DropdownMenu list={listTipo}>Ataque</DropdownMenu>
 						<DropdownMenu list={listTipo}>Experiencie</DropdownMenu> */}
 					</div>
 				</div>
-				<div className="HomeContent__content">
+				<div className="PokedexContent__content">
 					{
 						loadingList ?
-							<div className="HomeContent__content--list">
+							<div className="PokedexContent__content--list">
 								<PokiList
 									pokiList={pokiList}
 								/>
-								<Pagination paginationChange={paginationChange} />
+								<Pagination />
 							</div>
 
 							:
@@ -70,4 +70,4 @@ function HomeContent() {
 	)
 }
 
-export default HomeContent
+export default PokedexContent

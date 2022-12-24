@@ -10,6 +10,7 @@ function PokiList({ pokiList }) {
 				pokiList.map(poki =>
 					<PokiCard
 						key={poki.name}
+						id_card={poki.id}
 						img={poki.sprites.other.home.front_default}
 						name={poki.name}
 						attack={poki.stats[4].base_stat}

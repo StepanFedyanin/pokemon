@@ -3,7 +3,7 @@ import FooterItem from '../../component/FooterItem/FooterItem'
 import HeaderItem from '../../component/HeaderItem/HeaderItem'
 import HomeCover from '../../component/HomeCover/HomeCover'
 
-function HomePageCover() {
+function HomePage() {
 	return (
 		<div>
 			<HeaderItem />
@@ -13,4 +13,4 @@ function HomePageCover() {
 	)
 }
 
-export default HomePageCover
+export default HomePage

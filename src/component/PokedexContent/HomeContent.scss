@@ -1,8 +1,8 @@
 @use "../../style/StyleImport.scss" as import;
-.HomeContent {
+.PokedexContent {
 	padding-top: 90px;
 	flex-grow: 1;
-	.HomeContent__container {
+	.PokedexContent__container {
 		display: none;
 		max-width: 1125px;
 		min-height: 1px;
@@ -14,27 +14,27 @@
 		justify-content: center;
 	}
 }
-.HomeContent__title {
-	.HomeContent__title--style {
+.PokedexContent__title {
+	.PokedexContent__title--style {
 		@include import.KarlaNormal(#000000, 35px);
 		span {
 			font-weight: bold;
 		}
 	}
 }
-.HomeContent__filter {
+.PokedexContent__filter {
 	width: 100%;
-	.HomeContent__filter--serch {
+	.PokedexContent__filter--serch {
 		margin: 34px 0 36px 0;
 	}
-	.HomeContent__filter--dropdown {
+	.PokedexContent__filter--dropdown {
 		display: flex;
 		justify-content: space-between;
 		width: 50%;
 	}
 }
-.HomeContent__content {
-	.HomeContent__content--list {
+.PokedexContent__content {
+	.PokedexContent__content--list {
 		display: flex;
 		flex-direction: column;
 		align-items: center;

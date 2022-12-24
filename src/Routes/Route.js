@@ -1,9 +1,11 @@
 import React from "react";
-import HomePageCover from "../Pages/HomePageCover/HomePageCover";
-import HomePageContent from "../Pages/HomePageContent/HomePageContent";
+import HomePage from "../Pages/HomePage/HomePage";
+import PokedexPage from "../Pages/PokedexPage/PokedexPage";
 import PageNoFind from "../Pages/PageNoFind/PageNoFind";
+import VarietiesContentPage from "../Pages/VarietiesContentPage/VarietiesContentPage";
 export const RoutesList = [
-	{ path: '/', element: <HomePageCover /> },
-	{ path: '/PokiContent', element: <HomePageContent /> },
-	{ path: '*', element: <PageNoFind /> }
+	{ path: '/HomeContent', element: <HomePage /> },
+	{ path: '/PokedexContent', element: <PokedexPage /> },
+	{ path: '*', element: <PageNoFind /> },
+	{ path: '/Varieties', element: <VarietiesContentPage /> },
 ]

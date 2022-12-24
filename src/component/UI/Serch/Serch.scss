@@ -4,5 +4,17 @@
 	border-radius: 40px;
 	width: 100%;
 	padding: 17px 31px;
-	border: none;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	.serch__input {
+		width: 100%;
+		&--style {
+			width: 100%;
+		}
+	}
+	.serch__btn {
+		width: 25px;
+		height: 25px;
+	}
 }

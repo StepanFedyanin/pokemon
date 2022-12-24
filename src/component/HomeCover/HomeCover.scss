@@ -1,14 +1,14 @@
 @use "../../style/StyleImport.scss" as import;
-.homeCover {
+.homeContent {
 	background: url("../../resurc/CoverHomeBg.svg") no-repeat 100% 50%, linear-gradient(180deg, #f5db13 0%, #f2b807 100%);
 	height: 100vh;
 	width: 100vw;
 	padding: 90px 0 0 0;
-	.homeCover__container {
+	.homeContent__container {
 		width: 1125px;
 		margin: 0 auto;
 		height: 100%;
-		.homeCover__content {
+		.homeContent__content {
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
@@ -17,19 +17,19 @@
 		}
 	}
 }
-.homeCover__content--title {
-	.homeCover__title--style {
+.homeContent__content--title {
+	.homeContent__title--style {
 		@include import.KarlaNormal(#000000, 72px);
 		span {
 			font-weight: 700;
 		}
 	}
 }
-.homeCover__content--description {
-	.homeCover__description--style {
+.homeContent__content--description {
+	.homeContent__description--style {
 		@include import.KarlaNormal(#000000, 32px);
 	}
 }
-.homeCover__content--button {
+.homeContent__content--button {
 	max-width: 231px;
 }

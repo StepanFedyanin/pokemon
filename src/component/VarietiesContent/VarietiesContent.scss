@@ -1,0 +1,38 @@
+@use "../../style/StyleImport.scss" as import;
+.VarietiesContent {
+	background: #212121;
+	min-height: 100vh;
+	padding-bottom: 30px;
+	padding-top: 45px;
+	&__container {
+		max-width: 1100px;
+		margin: 0 auto;
+		.VarietiesContent__content {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			&--cover {
+				width: 40%;
+			}
+		}
+	}
+}
+.VarietiesContent__content--description {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+	.VarietiesContent__description--name {
+		.VarietiesContent__name--style {
+			@include import.KarlaNormal(#fdfdfd, 75px);
+		}
+	}
+	.VarietiesContent__description--progress {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		.VarietiesContent__progress--item {
+			width: 45%;
+		}
+	}
+}

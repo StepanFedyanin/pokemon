@@ -17,7 +17,7 @@ function PageNoFind() {
 						</p>
 					</div>
 					<div className="PageNoFind__error--link">
-						<NavLink to="/" >
+						<NavLink to="/HomeContent" >
 							<CastomButton color='#F2CB07' boxShadow="inset 0px -9px 0px rgba(0, 0, 0, 0.18)">Return</CastomButton>
 						</NavLink>
 					</div>

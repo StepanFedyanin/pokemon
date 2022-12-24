@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Routes } from "react-router-dom";
 import { RoutesList } from '../Routes/Route';
-import HomePageCover from '../Pages/HomePageCover/HomePageCover';
+import HomePage from '../Pages/HomePage/HomePage';
 const AppRouter = () => {
 	return (
 		<Routes>
@@ -10,7 +10,7 @@ const AppRouter = () => {
 					<Route path={el.path} element={el.element} key={el.path} />
 				)
 			}
-			<Route path={"*"} element={<HomePageCover />} />
+			<Route path={"*"} element={<HomePage />} />
 		</Routes>
 
 	)

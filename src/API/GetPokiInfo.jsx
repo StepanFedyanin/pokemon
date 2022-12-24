@@ -1,16 +1,22 @@
-// static async getPokiName(name) {
-// 	const response = await axios.get('https://pokeapi.co/api/v2/pokemon/' + name);
-// 	return (response.data);
-// }
 import axios from "axios";
-import { changeListFalse } from "../redux/reducers/listLoadingReducer";
-import { getPokemons } from "../redux/reducers/PokemonReducer";
-export const getPokiName = () => {
+import { changeModalLoading, changePokiContent, modalLoadingContent } from "../redux/reducers/openModalReducer";
+export const getPokiName = (idCard) => {
 	return function (dispath) {
-		axios.get('https://pokeapi.co/api/v2/pokemon/' + bulbasaur)
-			.then(response => getPoki(response.data))
-			.then(pokiList => dispath(getPokemons(pokiList)))
-			.then(() => dispath(changeListFalse(true)))
+		// axios.get('https://pokeapi.co/api/v2/pokemon/' + idCard)
+		// 	.then(response => dispath(changePokiContent(response.data)))
+		// 	.then(() => dispath(modalLoadingContent(true)))
+		// 	.catch(function (e) {
+		// 		dispath(changeModalLoading(false))
+		// 		console.log(e.response.status);
+		// 	})
+		axios.get('https://pokeapi.co/api/v2/pokemon/' + idCard)
+			.then(result => {
+				dispath(changePokiContent(result.data))
+				dispath(modalLoadingContent(true))
+			}, error => {
+				dispath(changeModalLoading(false));
+				dispath(modalLoadingContent(false))
+			})
 	}
 }
 
